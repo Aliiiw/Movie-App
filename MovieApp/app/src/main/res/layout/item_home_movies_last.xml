@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!--Poster-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/moviePosterCard"
+        android:layout_width="@dimen/_110mdp"
+        android:layout_height="@dimen/_140mdp"
+        android:layout_margin="@dimen/_10mdp"
+        android:elevation="@dimen/_3mdp"
+        app:cardBackgroundColor="@color/chineseBlack"
+        app:cardCornerRadius="@dimen/_5mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop">
+
+        <ImageView
+            android:id="@+id/moviePosterImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_poster"
+            android:scaleType="centerCrop" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Name-->
+    <TextView
+        android:id="@+id/movieNameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12font_mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/moviePosterCard"
+        app:layout_constraintTop_toTopOf="@id/moviePosterCard" />
+
+    <!--Rate-->
+    <TextView
+        android:id="@+id/movieRate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="1"
+        android:drawablePadding="@dimen/_4mdp"
+        android:textColor="@color/philippineSilver"
+        android:textSize="@dimen/_10font_mdp"
+        android:gravity="center_vertical"
+        app:drawableStartCompat="@drawable/ic_round_star_24"
+        app:drawableTint="@color/philippineSilver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/moviePosterCard"
+        app:layout_constraintTop_toBottomOf="@id/movieNameText" />
+
+    <!--country-->
+    <TextView
+        android:id="@+id/movieCountry"
+        android:layout_width="0dp"
+        android:drawablePadding="@dimen/_4mdp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:maxLines="1"
+        android:textColor="@color/philippineSilver"
+        android:textSize="@dimen/_10font_mdp"
+        android:gravity="center_vertical"
+        app:drawableStartCompat="@drawable/ic_round_language_24"
+        app:drawableTint="@color/philippineSilver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/moviePosterCard"
+        app:layout_constraintTop_toBottomOf="@id/movieRate" />
+
+    <!--Year-->
+    <TextView
+        android:id="@+id/movieYear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:drawablePadding="@dimen/_4mdp"
+        android:maxLines="1"
+        android:textColor="@color/philippineSilver"
+        android:textSize="@dimen/_10font_mdp"
+        android:gravity="center_vertical"
+        app:drawableStartCompat="@drawable/ic_round_calendar_today_24"
+        app:drawableTint="@color/philippineSilver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/moviePosterCard"
+        app:layout_constraintTop_toBottomOf="@id/movieCountry" />
+
+
+    <!--get More-->
+    <TextView
+        android:id="@+id/movieMoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:drawablePadding="@dimen/_5mdp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/moreInfo"
+        android:textColor="@color/scarlet"
+        android:textSize="@dimen/_10font_mdp"
+        app:drawableEndCompat="@drawable/ic_round_chevron_right_24"
+        app:drawableTint="@color/scarlet"
+        app:layout_constraintStart_toEndOf="@id/moviePosterCard"
+        app:layout_constraintTop_toBottomOf="@id/movieYear" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

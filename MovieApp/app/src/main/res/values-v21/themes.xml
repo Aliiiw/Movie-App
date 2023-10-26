@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.TopMovieApp" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/crayola</item>
+        <item name="colorPrimaryVariant">@color/chineseBlack</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/crayola</item>
+        <item name="colorSecondaryVariant">@color/crayola</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <item name="android:windowBackground">@color/chineseBlack</item>
+
+    </style>
+</resources>

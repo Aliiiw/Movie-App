@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <!--scroll all-->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-29dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--top movies layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topMoviesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/homeTopMoviesRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <me.relex.circleindicator.CircleIndicator2
+                    android:id="@+id/topMoviesIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    app:layout_constraintTop_toBottomOf="@id/homeTopMoviesRecycler" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Genres-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/genresLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                app:layout_constraintTop_toBottomOf="@id/topMoviesLayout">
+
+                <!--title-->
+                <TextView
+                    android:id="@+id/genresTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10mdp"
+                    android:text="@string/genres"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_12font_mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--recycler-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/genresRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:clipToPadding="false"
+                    android:paddingHorizontal="@dimen/_10mdp"
+                    app:layout_constraintTop_toBottomOf="@id/genresTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Last Movies-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lastMoviesLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                app:layout_constraintTop_toBottomOf="@id/genresLayout">
+
+                <!--title-->
+                <TextView
+                    android:id="@+id/lastMoviesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10mdp"
+                    android:text="@string/lastMovies"
+                    android:textColor="@color/crayola"
+                    android:textSize="@dimen/_12font_mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--recycler-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lastMoviesRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lastMoviesTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!--Progress bar loading-->
+    <ProgressBar
+        android:id="@+id/moviesLoading"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
