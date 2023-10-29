@@ -18,8 +18,8 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext contex: Context) = Room.databaseBuilder(
-        contex, MoviesDatabase::class.java, Constants.MOVIES_DATABASE
+    fun provideDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context, MoviesDatabase::class.java, Constants.MOVIES_DATABASE
     )
         .allowMainThreadQueries()
         .fallbackToDestructiveMigration()

@@ -1,18 +1,28 @@
 package com.alirahimi.movieapp.viewmodel
 
-import android.graphics.Movie
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.alirahimi.movieapp.db.MovieEntity
 import com.alirahimi.movieapp.repository.FavoriteRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+
+class FavoriteViewModelFactory(private val repository: FavoriteRepository) :
+    ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
+            return FavoriteViewModel(repository) as T
+        }
+
+        throw java.lang.IllegalArgumentException("wrong dependency")
+    }
+
+}
 
 
-@HiltViewModel
-class FavoriteViewModel @Inject constructor(private val repository: FavoriteRepository) :
+class FavoriteViewModel(private val repository: FavoriteRepository) :
     ViewModel() {
 
     val favoriteMoviesListLiveData = MutableLiveData<MutableList<MovieEntity>>()

@@ -6,25 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alirahimi.movieapp.R
 import com.alirahimi.movieapp.databinding.FragmentFavoriteBinding
+import com.alirahimi.movieapp.utils.MyApp
 import com.alirahimi.movieapp.utils.initRecycler
 import com.alirahimi.movieapp.utils.showInvisible
 import com.alirahimi.movieapp.viewmodel.FavoriteViewModel
+import com.alirahimi.movieapp.viewmodel.FavoriteViewModelFactory
+import com.alirahimi.movieapp.viewmodel.HomeViewModel
+import com.alirahimi.movieapp.viewmodel.HomeViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
-
-    @Inject
-    lateinit var favoriteAdapter: FavoriteAdapter
-
-    private val viewModel: FavoriteViewModel by viewModels()
-
+    private lateinit var favoriteAdapter: FavoriteAdapter
+    private lateinit var viewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +36,21 @@ class FavoriteFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(
+            this,
+            FavoriteViewModelFactory(MyApp.appModule.favoriteRepository)
+        ).get(
+            FavoriteViewModel::class.java
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        favoriteAdapter = FavoriteAdapter()
+
         binding.apply {
             //show all favorites
             viewModel.loadFavoriteMovies()

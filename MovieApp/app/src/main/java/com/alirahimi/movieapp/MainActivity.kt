@@ -10,7 +10,6 @@ import com.alirahimi.movieapp.ui.home.HomeFragment
 import com.alirahimi.movieapp.ui.search.SearchFragment
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {

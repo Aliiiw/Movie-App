@@ -2,18 +2,28 @@ package com.alirahimi.movieapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.alirahimi.movieapp.db.MovieEntity
 import com.alirahimi.movieapp.models.detail.MovieDetailResponse
 import com.alirahimi.movieapp.repository.DetailRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
+
+class DetailViewModelFactory(private val repository: DetailRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(DetailViewModel::class.java)) {
+            return DetailViewModel(repository) as T
+        }
+
+        throw java.lang.IllegalArgumentException("wrong dependency")
+    }
+
+}
 
 
-@HiltViewModel
-class DetailViewModel @Inject constructor(private val repository: DetailRepository) :
+class DetailViewModel(private val repository: DetailRepository) :
     ViewModel() {
 
     val movieDetailLiveData = MutableLiveData<MovieDetailResponse>()

@@ -10,7 +10,7 @@ import com.alirahimi.movieapp.models.home.GenresListResponse.GenresListResponseI
 import javax.inject.Inject
 
 
-class GenresAdapter @Inject constructor() : RecyclerView.Adapter<GenresAdapter.ViewHolder>() {
+class GenresAdapter : RecyclerView.Adapter<GenresAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemHomeGenreListBinding
 

@@ -4,7 +4,7 @@ import com.alirahimi.movieapp.api.ApiService
 import javax.inject.Inject
 
 
-class HomeRepository @Inject constructor(private val api: ApiService) {
+class HomeRepository(private val api: ApiService) {
 
     suspend fun getTopMovies(id: Int) = api.getTopMovies(id)
 

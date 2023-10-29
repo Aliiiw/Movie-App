@@ -7,26 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.alirahimi.movieapp.R
+import com.alirahimi.movieapp.databinding.FragmentHomeBinding
 import com.alirahimi.movieapp.databinding.FragmentSearchBinding
+import com.alirahimi.movieapp.ui.home.adapters.GenresAdapter
 import com.alirahimi.movieapp.ui.home.adapters.LastMoviesAdapter
+import com.alirahimi.movieapp.ui.home.adapters.TopMoviesAdapter
+import com.alirahimi.movieapp.utils.MyApp
 import com.alirahimi.movieapp.utils.initRecycler
 import com.alirahimi.movieapp.utils.showInvisible
+import com.alirahimi.movieapp.viewmodel.HomeViewModel
+import com.alirahimi.movieapp.viewmodel.HomeViewModelFactory
 import com.alirahimi.movieapp.viewmodel.SearchViewModel
+import com.alirahimi.movieapp.viewmodel.SearchViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
-
-    @Inject
-    lateinit var searchAdapter: LastMoviesAdapter
-
-    private val viewModel: SearchViewModel by viewModels()
-
+    private lateinit var searchAdapter: LastMoviesAdapter
+    private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,9 +41,20 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel =
+            ViewModelProvider(this, SearchViewModelFactory(MyApp.appModule.searchRepository)).get(
+                SearchViewModel::class.java
+            )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //init
+
+        searchAdapter = LastMoviesAdapter()
+
         binding.apply {
             searchEditText.addTextChangedListener {
                 val movieName = it.toString()
@@ -78,3 +93,10 @@ class SearchFragment : Fragment() {
         }
     }
 }
+
+//    private lateinit var binding: FragmentSearchBinding
+//
+//    @Inject
+//    lateinit var searchAdapter: LastMoviesAdapter
+
+//    private val viewModel: SearchViewModel by viewModels()

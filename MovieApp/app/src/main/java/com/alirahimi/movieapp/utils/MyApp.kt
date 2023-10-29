@@ -1,8 +1,17 @@
 package com.alirahimi.movieapp.utils
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.alirahimi.movieapp.di.AppModule
+import com.alirahimi.movieapp.di.AppModuleImplementation
 
-@HiltAndroidApp
-class MyApp: Application() {
+class MyApp : Application() {
+
+    companion object {
+        lateinit var appModule: AppModule
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        appModule = AppModuleImplementation(this)
+    }
 }

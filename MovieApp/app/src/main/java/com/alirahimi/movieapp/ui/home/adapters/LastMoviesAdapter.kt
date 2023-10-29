@@ -11,8 +11,8 @@ import com.alirahimi.movieapp.databinding.ItemHomeTopMoviesBinding
 import com.alirahimi.movieapp.models.home.MoviesTopListResponse.Data
 import javax.inject.Inject
 
-class LastMoviesAdapter @Inject constructor() :
-    RecyclerView.Adapter<LastMoviesAdapter.ViewHolder>() {
+class LastMoviesAdapter: RecyclerView.Adapter<LastMoviesAdapter.ViewHolder>() {
+
 
     private lateinit var binding: ItemHomeMoviesLastBinding
     private var lastMovieList = emptyList<Data>()

@@ -2,17 +2,28 @@ package com.alirahimi.movieapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.alirahimi.movieapp.models.home.GenresListResponse
 import com.alirahimi.movieapp.models.home.MoviesTopListResponse
 import com.alirahimi.movieapp.repository.HomeRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(private val repository: HomeRepository) : ViewModel() {
+class HomeViewModelFactory(private val repository: HomeRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
+            return HomeViewModel(repository) as T
+        }
+
+        throw java.lang.IllegalArgumentException("wrong dependency")
+    }
+
+}
+
+
+class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     val topMoviesLiveData = MutableLiveData<MoviesTopListResponse>()
     val genresListLiveData = MutableLiveData<GenresListResponse>()

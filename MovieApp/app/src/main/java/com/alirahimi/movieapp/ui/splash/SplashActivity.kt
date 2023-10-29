@@ -15,13 +15,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
 
-    @Inject
-    lateinit var dataStore: StoreUserData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +29,25 @@ class SplashActivity : AppCompatActivity() {
         //set delay
         CoroutineScope(Dispatchers.IO).launch {
             delay(2500)
-
-            //check user token
-            dataStore.getUserToken().collect {
-                if (it.isEmpty()) {
-                    Intent(this@SplashActivity, RegisterActivity::class.java).also { goToRegister ->
-                        startActivity(goToRegister)
-                    }
-                    finish()
-                } else {
-                    Intent(this@SplashActivity, MainActivity::class.java).also { goToMain ->
-                        startActivity(goToMain)
-                    }
-                    finish()
-                }
+            Intent(this@SplashActivity, RegisterActivity::class.java).also { goToRegister ->
+                startActivity(goToRegister)
             }
+            finish()
+
+//            //check user token
+//            dataStore.getUserToken().collect {
+//                if (it.isEmpty()) {
+//                    Intent(this@SplashActivity, RegisterActivity::class.java).also { goToRegister ->
+//                        startActivity(goToRegister)
+//                    }
+//                    finish()
+//                } else {
+//                    Intent(this@SplashActivity, MainActivity::class.java).also { goToMain ->
+//                        startActivity(goToMain)
+//                    }
+//                    finish()
+//                }
+//            }
         }
     }
 }

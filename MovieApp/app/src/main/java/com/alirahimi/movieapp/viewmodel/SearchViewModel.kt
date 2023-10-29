@@ -2,16 +2,29 @@ package com.alirahimi.movieapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.alirahimi.movieapp.models.home.MoviesTopListResponse
+import com.alirahimi.movieapp.repository.HomeRepository
 import com.alirahimi.movieapp.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+class SearchViewModelFactory(private val repository: SearchRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SearchViewModel::class.java)) {
+            return SearchViewModel(repository) as T
+        }
 
-@HiltViewModel
-class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
+        throw java.lang.IllegalArgumentException("wrong dependency")
+    }
+
+}
+
+
+class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
 
     val moviesListLiveData = MutableLiveData<MoviesTopListResponse>()
     val loadingLiveData = MutableLiveData<Boolean>()

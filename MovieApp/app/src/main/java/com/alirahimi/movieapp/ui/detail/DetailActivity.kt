@@ -1,43 +1,53 @@
 package com.alirahimi.movieapp.ui.detail
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.alirahimi.movieapp.R
 import com.alirahimi.movieapp.databinding.ActivityDetailBinding
 import com.alirahimi.movieapp.db.MovieEntity
+import com.alirahimi.movieapp.utils.MyApp
 import com.alirahimi.movieapp.utils.initRecycler
 import com.alirahimi.movieapp.utils.showInvisible
 import com.alirahimi.movieapp.viewmodel.DetailViewModel
+import com.alirahimi.movieapp.viewmodel.DetailViewModelFactory
+import com.alirahimi.movieapp.viewmodel.RegisterViewModel
+import com.alirahimi.movieapp.viewmodel.RegisterViewModelFactory
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-
-    @Inject
-    lateinit var imagesAdapter: ImagesAdapter
-
-    private val viewModel: DetailViewModel by viewModels()
-
+    private lateinit var imagesAdapter: ImagesAdapter
+    private lateinit var viewModel: DetailViewModel
     private var movieId = 0
+    private lateinit var entity: MovieEntity
 
-    @Inject
-    lateinit var entity: MovieEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+        viewModel = ViewModelProvider(
+            this,
+            DetailViewModelFactory(MyApp.appModule.detailRepository)
+        ).get(DetailViewModel::class.java)
+
+
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         val myJson = intent.getStringExtra("jsonObject")
         val gson = Gson()
@@ -47,6 +57,9 @@ class DetailActivity : AppCompatActivity() {
 
 
         binding.apply {
+
+            imagesAdapter = ImagesAdapter()
+            entity = MovieEntity()
 
             //load data
             viewModel.movieDetailLiveData.observe(this@DetailActivity) { movie ->
@@ -145,3 +158,15 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 }
+
+//private lateinit var binding: ActivityDetailBinding
+//
+//@Inject
+//lateinit var imagesAdapter: ImagesAdapter
+//
+//private val viewModel: DetailViewModel by viewModels()
+//
+//private var movieId = 0
+//
+//@Inject
+//lateinit var entity: MovieEntity

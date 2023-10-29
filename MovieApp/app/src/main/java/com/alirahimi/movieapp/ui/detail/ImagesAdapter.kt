@@ -12,7 +12,7 @@ import com.alirahimi.movieapp.models.home.GenresListResponse.GenresListResponseI
 import javax.inject.Inject
 
 
-class ImagesAdapter @Inject constructor() : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter: RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemDetailImagesBinding
 

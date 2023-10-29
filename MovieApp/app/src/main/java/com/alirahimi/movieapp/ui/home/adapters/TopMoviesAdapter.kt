@@ -10,8 +10,7 @@ import com.alirahimi.movieapp.databinding.ItemHomeTopMoviesBinding
 import com.alirahimi.movieapp.models.home.MoviesTopListResponse.Data
 import javax.inject.Inject
 
-class TopMoviesAdapter @Inject constructor() :
-    RecyclerView.Adapter<TopMoviesAdapter.ViewHolder>() {
+class TopMoviesAdapter : RecyclerView.Adapter<TopMoviesAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemHomeTopMoviesBinding
 

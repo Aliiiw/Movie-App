@@ -10,7 +10,7 @@ import com.alirahimi.movieapp.db.MovieEntity
 import com.alirahimi.movieapp.models.home.MoviesTopListResponse
 import javax.inject.Inject
 
-class FavoriteAdapter @Inject constructor() :
+class FavoriteAdapter :
     RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private lateinit var binding: ItemHomeMoviesLastBinding
